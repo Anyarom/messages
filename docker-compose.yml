@@ -1,0 +1,68 @@
+version: "3.7"
+
+networks:
+  backend:
+    name: backend
+    driver: bridge
+
+services:
+  msg_acceptor:
+    container_name: msg_acceptor
+    image: siannarom/msg_acceptor
+    restart: on-failure
+    networks:
+      - backend
+    ports:
+      - 127.0.0.1:8080:8080
+    volumes:
+      - /Users/anya/IdeaProjects/messages/acceptor/deploy/config.yml:/config.yml
+    environment:
+      CONFIG_PATH: /config.yml
+    command: ["./app_acceptor"]
+
+  msg_worker_local:
+    container_name: msg_worker
+    image: siannarom/msg_worker
+    restart: on-failure
+    networks:
+      - backend
+    volumes:
+      - /Users/anya/IdeaProjects/messages/worker/deploy/config.yml:/config.yml
+    environment:
+      CONFIG_PATH: /config.yml
+    command: ["./app_msg_worker"]
+
+  msg_rabbit_local:
+    container_name: msg_rabbit
+    image: rabbitmq:3.8.2
+    restart: on-failure
+    networks:
+      - backend
+    environment:
+      RABBITMQ_DEFAULT_USER: "msg"
+      RABBITMQ_DEFAULT_PASS: "erw_23_12"
+    ports:
+      - 127.0.0.1:5673:5672
+    #volumes:
+      #- /Users/anya/IdeaProjects/messages/rmq/data:/var/lib/rabbitmq
+
+  msg_postgres_local:
+    container_name: msg_postgres
+    image: postgres:11.2
+    restart: on-failure
+    networks:
+      - backend
+    ports:
+      - 127.0.0.1:5434:5432
+    #environment:
+      #POSTGRES_DB: messages
+      #POSTGRES_USER: msg
+      #POSTGRES_PASSWORD: 24bn_32&)
+    #volumes:
+      #- /Users/anya/IdeaProjects/messages/pg/data:/var/lib/postgresql/data
+    command: ["postgres",
+              "-c", "max_connections=200",
+              "-c", "shared_buffers=1GB",
+              "-c", "work_mem=1MB",
+              "-c", "effective_cache_size=1GB",
+    ]

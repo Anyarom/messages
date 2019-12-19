@@ -1,0 +1,5 @@
+rabbit:
+  host: "msg_rabbit" # msg_rabbit  localhost
+  username: "msg"
+  pass: "erw_23_12"
+  port: "5672"
