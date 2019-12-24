@@ -18,7 +18,7 @@ services:
       - /Users/anya/IdeaProjects/messages/acceptor/deploy/config.yml:/config.yml
     environment:
       CONFIG_PATH: /config.yml
-    command: ["./app_acceptor"]
+    command: ["./app/acceptor"]
 
   msg_worker_local:
     container_name: msg_worker
@@ -30,7 +30,7 @@ services:
       - /Users/anya/IdeaProjects/messages/worker/deploy/config.yml:/config.yml
     environment:
       CONFIG_PATH: /config.yml
-    command: ["./app_msg_worker"]
+    command: ["./app/worker"]
 
   msg_rabbit_local:
     container_name: msg_rabbit
