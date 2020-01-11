@@ -3,7 +3,7 @@ package main
 import (
 	"acceptor/config"
 	"acceptor/handlers"
-	"acceptor/rabbit"
+	"acceptor/repository/rabbit"
 	"github.com/buaazp/fasthttprouter"
 	"github.com/rs/zerolog"
 	"github.com/valyala/fasthttp"

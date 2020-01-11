@@ -2,7 +2,7 @@ package rabbit
 
 import (
 	"github.com/streadway/amqp"
-	"worker/postgres"
+	"worker/repository/postgres"
 )
 
 func ConsumerMsg(ch *amqp.Channel, pgxClient postgres.PgxClient) (<-chan amqp.Delivery, error) {

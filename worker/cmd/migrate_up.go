@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 	"os"
 	"worker/config"
-	"worker/postgres"
+	"worker/repository/postgres"
 )
 
 var migrateUp = &cobra.Command{

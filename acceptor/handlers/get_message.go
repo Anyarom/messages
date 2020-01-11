@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"acceptor/rabbit"
+	"acceptor/repository/rabbit"
 	"encoding/json"
 	"github.com/valyala/fasthttp"
 )
