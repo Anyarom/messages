@@ -7,8 +7,8 @@ import (
 )
 
 type RbtClient struct {
-	ConnRbtMsg *amqp.Connection
-	Log        zerolog.Logger
+	*amqp.Connection
+	Log zerolog.Logger
 }
 
 func InitRbtClient(rbtConfig config.RbtConfig, log zerolog.Logger) (rbtClient *RbtClient, error error) {
@@ -23,7 +23,7 @@ func InitRbtClient(rbtConfig config.RbtConfig, log zerolog.Logger) (rbtClient *R
 
 // метод для открытия канала
 func (rbtClient *RbtClient) OpenChannel() (*amqp.Channel, error) {
-	ch, err := rbtClient.ConnRbtMsg.Channel()
+	ch, err := rbtClient.Connection.Channel()
 	if err != nil {
 		return nil, err
 	}

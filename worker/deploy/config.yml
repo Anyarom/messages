@@ -1,12 +1,12 @@
 pg:
-  host: "msg_postgres" # msg_postgres  localhost
+  host: "localhost" # msg_postgres  localhost
   port: 5432
   database: "postgres"
   user: "postgres"
   password: ""
 
 rabbit:
-  host: "msg_rabbit" # msg_rabbit  localhost
+  host: "localhost" # msg_rabbit  localhost
   username: "msg"
   pass: "erw_23_12"
-  port: "5672"
+  port: "5673"

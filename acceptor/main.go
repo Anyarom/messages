@@ -26,7 +26,11 @@ func main() {
 	if err != nil {
 		log.Fatal().Caller().Err(err).Msg("клиент rbtClient не инициализирован")
 	}
-	defer rbtClient.ConnRbtMsg.Close()
+
+	defer func() {
+		if err := rbtClient.Close(); err != nil {
+		}
+	}()
 
 	// откроем канал
 	ch, err := rbtClient.OpenChannel()

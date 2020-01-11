@@ -12,8 +12,8 @@ import (
 
 // структура для создания соединения c бд
 type PgxClient struct {
-	PgxConnPool *pgx.ConnPool
-	Log         zerolog.Logger
+	*pgx.ConnPool
+	Log zerolog.Logger
 }
 
 // создаем клиента Pg
